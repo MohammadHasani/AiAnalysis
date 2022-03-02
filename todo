@@ -1,0 +1,8 @@
+#done can create crawler object
+#done can crawl in a specific file of a folder of repo
+#done can crawl in all files of a folder of repo
+#done can crawl in all .py files of a folder of repo and ignore not python files
+#done can crawl in all .py files of all folder of repo and ignore not python files
+#TODO can find a word in all files of all folder in .py files
+#TODO can find a regex in all files of all folder in .py files
+#TODO can find a regex in all files of all folder with celery in .py files
