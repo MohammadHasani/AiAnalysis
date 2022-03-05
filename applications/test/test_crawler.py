@@ -3,14 +3,14 @@ import shutil
 
 import pytest
 
-from applications.Crawler.models import Crawler
+from applications.Api.github import GithubAPI
+from applications.config import ROOT_DIR
+from applications.model.crawler import Crawler
 
 
 def get_unittest_repo():
-    directory = "unittest_repo"
-    parent_dir = "applications/repos/"
+    path = ROOT_DIR + "/repos/test/"
 
-    path = os.path.abspath(os.path.join(parent_dir, directory))
     return path
 
 
@@ -48,7 +48,7 @@ def create_folder_and_files():
 
 def test_crawl_all_python_files_of_folder(create_folder_and_files):
     crawler_obj = Crawler()
-    path = get_unittest_repo() + '/'
+    path = get_unittest_repo()
 
     file_list = crawler_obj.get_all_python_files_in_folder(path)
     assert file_list == [path + 'example.py', path + 'example2.py', path + 'rec1/example.py',
@@ -56,3 +56,5 @@ def test_crawl_all_python_files_of_folder(create_folder_and_files):
 
     for f in file_list:
         crawler_obj.read_file(f, '')
+
+
