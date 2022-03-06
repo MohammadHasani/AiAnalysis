@@ -3,7 +3,7 @@ import shutil
 
 import pytest
 
-from applications.Api.github import GithubAPI
+from applications.api.github import GithubAPI
 from applications.constant import ROOT_DIR
 from applications.model.crawler import Crawler
 

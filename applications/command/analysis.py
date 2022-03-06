@@ -1,6 +1,6 @@
 import click
 
-from applications.Api.github import GithubAPI
+from applications.api.github import GithubAPI
 
 
 @click.command()

@@ -1,7 +1,7 @@
 import click
 from git import InvalidGitRepositoryError, GitCommandError
 
-from applications.Api.github import GithubAPI
+from applications.api.github import GithubAPI
 from applications.model.crawler import Crawler
 
 fg = {'low': 'blue', 'medium': 'green', 'high': 'red', None: 'yellow'}
