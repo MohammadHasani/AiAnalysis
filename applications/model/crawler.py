@@ -11,10 +11,6 @@ class Crawler:
         with open(file_path, 'r') as reader:
             return reader.read()
 
-    # TODO remove this method
-    def get_number_of_py_files(self, path):
-        return {"files": 2, "folders": 4}
-
     @staticmethod
     def get_all_python_files_in_folder(path):
         file_list = list(Path(path).rglob("*.[pP][yY]"))

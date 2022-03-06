@@ -2,7 +2,7 @@ import shutil
 
 from git import Repo, InvalidGitRepositoryError
 
-from applications.config import ROOT_DIR
+from applications.constant import ROOT_DIR
 
 
 class GithubAPI:
@@ -26,6 +26,9 @@ class GithubAPI:
 
     @staticmethod
     def get_repo_name_from_url(url: str) -> str:
+        if url.endswith('/'):
+            url = url[:-2]
+
         last_slash_index = url.rfind("/")
         last_suffix_index = url.rfind(".git")
         if last_suffix_index < 0:
