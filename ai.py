@@ -8,7 +8,7 @@ fg = {'low': 'blue', 'medium': 'green', 'high': 'red', None: 'yellow'}
 
 
 @click.command()
-@click.option("--git_url", prompt="Enter repository url", help="The repo url you want to analysis.")
+@click.option("--git_url", prompt="Enter GitHub repository url", help="The repo url you want to analysis.")
 def hello(git_url):
     try:
         repo_name = GithubAPI.get_repo_name_from_url(git_url)
