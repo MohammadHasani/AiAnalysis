@@ -29,13 +29,13 @@ def init_api():
 
 
 def test_download_repo(init_api):
-    repo_url = 'https://github.com/Kodex-AI/coding-challenges-input'
+    repo_url = ROOT_DIR + '/../mock_repo/coding-challenges-input/'
     git_name = GithubAPI.get_repo_name_from_url(repo_url)
     repo_dir = ROOT_DIR + "/repos/test/" + git_name
-
     GithubAPI.download_repo(repo_url, repo_dir)
 
     challenge_repo_dir = ROOT_DIR + "/repos/test/" + git_name + '/python-challenge'
 
     python_files_in_repo = Crawler.get_all_python_files_in_folder(challenge_repo_dir)
     assert len(python_files_in_repo) > 1
+
