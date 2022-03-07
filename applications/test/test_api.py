@@ -29,9 +29,10 @@ def init_api():
 
 
 def test_download_repo(init_api):
-    repo_url = ROOT_DIR + '/../mock_repo/'
+    repo_url = 'https://github.com/Kodex-AI/coding-challenges-input'
     git_name = GithubAPI.get_repo_name_from_url(repo_url)
     repo_dir = ROOT_DIR + "/repos/test/" + git_name
+
     GithubAPI.download_repo(repo_url, repo_dir)
 
     challenge_repo_dir = ROOT_DIR + "/repos/test/" + git_name + '/python-challenge'
