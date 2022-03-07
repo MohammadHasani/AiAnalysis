@@ -1,0 +1,3 @@
+[submodule "mock_repo/coding-challenges-input"]
+	path = mock_repo/coding-challenges-input
+	url = https://github.com/Kodex-AI/coding-challenges-input
