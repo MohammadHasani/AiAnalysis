@@ -218,3 +218,106 @@ def test_analysis_python_files(create_folder_and_files):
     assert relu_result_list == [17, 9, 8, 0]
     assert sigmoid_result_list == [4, 0, 4, 0]
     assert classify_result == ['high', 'low', 'medium', None]
+
+
+def test_analysis_multiple_model_var_files(create_folder_and_files):
+    py_content_5='''# dummy ai 03
+# https://machinelearningmastery.com/tutorial-first-neural-network-python-keras/
+# first neural network with keras tutorial
+from numpy import loadtxt
+from keras.models import Sequential
+from keras.layers import Dense
+# load the dataset
+dataset = loadtxt('pima-indians-diabetes.csv', delimiter=',')
+# split into input (X) and output (y) variables
+X = dataset[:,0:8]
+y = dataset[:,8]
+
+# define the keras model
+model = Sequential()
+model.add(Dense(12
+                , input_dim=8
+                , activation='relu')  )
+model = Sequential()
+model.add(Dense(12, input_dim=8, activation
+='relu'))
+model.add(Dense(8, activation='relu'))
+model.add(       Dense(8, activation   =
+
+
+
+'relu'))
+model.add ( Dense(8 , activation='relu'     ))
+model.\
+add ( Dense     ( 8, activation='relu'))
+model.add ( Dense(8, activation=
+
+'sigmoid')   )
+model.add(Dense(8, activation='sigmoid'))
+model.add(Dense   (8, activation='sigmoid'))
+model.add\
+    (Dense(8, activation='relu'))
+model.    add (Dense
+          (8, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+
+# compile the keras model
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+# fit the keras model on the dataset
+model.fit(X, y, epochs=150, batch_size=10)
+# evaluate the keras model
+_, accuracy = model.evaluate(X, y)
+print('Accuracy: %.2f' % (accuracy*100))
+
+
+model_2 = Sequential()
+model_2.add(Dense(12, input_dim=8, activation
+='relu'))
+model_2.add(Dense(8, activation='relu'))
+model_2.add(       Dense(8, activation   =
+
+
+
+'relu'))
+model_2.add ( Dense(8 , activation='relu'     ))
+model_2.\
+add ( Dense     ( 8, activation='relu'))
+model_2.add ( Dense(8, activation=
+
+'sigmoid')   )
+model_2.add(Dense(8, activation='sigmoid'))
+model_2.add(Dense   (8, activation='sigmoid'))
+model_2.add\
+    (Dense(8, activation='relu'))
+model_2.    add (Dense
+          (8, activation='relu'))
+model_2.add(Dense(1, activation='sigmoid'))
+
+# compile the keras model_2
+model_2.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+# fit the keras model_2 on the dataset
+model_2.fit(X, y, epochs=150, batch_size=10)
+# evaluate the keras model_2
+_, accuracy = model_2.evaluate(X, y)
+print('Accuracy: %.2f' % (accuracy*100))'''
+
+    path = get_test_repo()
+
+    write_new_file(path + '/', "example3.py", py_content_5)
+
+    crawler_obj = Crawler()
+    file_list = crawler_obj.get_all_python_files_in_folder(path)
+    classify_result = []
+    relu_result_list = []
+    sigmoid_result_list = []
+    for file in file_list:
+        classify_result.append(crawler_obj.classify_file(file))
+
+        relu_result = crawler_obj.analysis_python_file(file, crawler_obj.relu_regex)
+        sigmoid_result = crawler_obj.analysis_python_file(file, crawler_obj.sigmoid_regex)
+        relu_result_list.append(relu_result)
+        sigmoid_result_list.append(sigmoid_result)
+
+    assert relu_result_list == [17, 9, 15, 8, 0]
+    assert sigmoid_result_list == [4, 0, 8, 4, 0]
+    assert classify_result == ['high', 'low', 'high', 'medium', None]
